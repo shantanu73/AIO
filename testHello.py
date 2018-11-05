@@ -11,7 +11,7 @@ async def new_register(request):
         system_id = request.query['system_id']
         version = request.query['version']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
-        registered_time = time.strftime("%H:%M:%S", time.now())#datetime.datetime.now().strftime('%H:%M:%S')
+        registered_time = datetime.datetime(now()).strftime('%H:%M:%S')
         
         
         response_obj = { 'handler_uuid' : handler_uuid }
