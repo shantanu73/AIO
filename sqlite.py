@@ -8,7 +8,7 @@ class BaseModel(Model):
         database = db
 
 class User(BaseModel):
-    username = CharField(unique=True)
+    username = CharField()
 
 
 print('\n\nHI\n\n')
