@@ -38,7 +38,7 @@ async def new_register(request):
             print(row.vesion)
             print(row.registered_time)
             
-        response_obj = { 'handler_uuid' : handler_uuid , 'registered_time' : registered_time }
+        response_obj = { 'handler_uuid' : handler_uuid }
         return web.Response(text=json.dumps(response_obj))
     except Exception as e:
         response_obj = { 'status' : 'failed', 'reason': str(e) }        
