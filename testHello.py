@@ -28,10 +28,10 @@ async def new_register(request):
         version = request.query['version']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
         registered_time = datetime.now().strftime('%H:%M:%S')
-        handler_obj = Handler()
-        handler_data = (handler_obj.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
+        
+        handler_data = (Handler.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
         handler_data.execute()
-        handler_list = (handler_obj.select(handler_obj))
+        handler_list = (Handler.select(Handler))
         for row in handler_list:
             print(row.handler_uuid)
             print(row.agent_id)
