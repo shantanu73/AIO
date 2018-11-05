@@ -27,7 +27,7 @@ async def new_register(request):
         system_id = request.query['system_id']
         version = request.query['version']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
-        registered_time = datetime.now().strftime('%H:%M:%S')
+        registered_time = 'current date'#datetime.now().strftime('%H:%M:%S')
         
         handler_data = (Handler.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
         handler_data.execute()
