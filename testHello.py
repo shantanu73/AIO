@@ -3,8 +3,24 @@ import json
 from datetime import datetime
 import random, string
 import time
+import datetime
+from peewee import *
 
+db = SqliteDatabase('my_app.db')
 
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+class Handler(BaseModel):
+    handler_uuid = CharField(primary_key=True)
+    agent_id = CharField(max_length=40)
+    system_id = CharField(max_length=40)
+    vesion = CharField(max_length=40)
+    registered_time = CharField(max_length=40)
+
+Handler.create_table(True)
+    
 async def new_register(request):
     try:
         agent_id = request.query['agent_id']
@@ -12,8 +28,17 @@ async def new_register(request):
         version = request.query['version']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
         registered_time = datetime.now().strftime('%H:%M:%S')
-        
-        
+        handler_obj = Handler()
+        handler_data = (handler_obj.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
+        handler_data.execute()
+        handler_list = (handler_obj.select(handler_obj))
+        for row in handler_list:
+            print(row.handler_uuid)
+            print(row.agent_id)
+            print(row.system_id)
+            print(row.vesion)
+            print(row.registered_time)
+            
         response_obj = { 'handler_uuid' : handler_uuid , 'registered_time' : registered_time }
         return web.Response(text=json.dumps(response_obj), status=200)
     except Exception as e:
