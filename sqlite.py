@@ -14,7 +14,10 @@ class Tweet(BaseModel):
     user = ForeignKeyField(User)
     message = TextField()
     created_date = DateTimeField(default=datetime.datetime.now)
-    is_published = BooleanField(default=True)
+    is_published = BooleanField(default=True)\
+    
+User.create_table(True)
+Tweet.create_table(True)
     
     
 tweets = (Tweet
