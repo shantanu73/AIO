@@ -14,7 +14,7 @@ async def new_register(request):
         registered_time = datetime.now().strftime('%H:%M:%S')
         
         
-        response_obj = { 'handler_uuid' : handler_uuid }
+        response_obj = { 'handler_uuid' : handler_uuid , 'registered_time' : registered_time }
         return web.Response(text=json.dumps(response_obj), status=200)
     except Exception as e:
         response_obj = { 'status' : 'failed', 'reason': str(e) }        
