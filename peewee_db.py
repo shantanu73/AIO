@@ -21,10 +21,8 @@ class Handler(peewee.Model):
 # creating table for above block
 Handler.create_table(True)
 query = Handler.insert_from(
-           Handler.handler_uuid, Handler.agent_id, Handler.system_id, Handler.vesion, Handler.registered_time ),
-           fields=['a', 'b', 'c', 'd', 'e'])
+           Handler.handler_uuid, Handler.agent_id, Handler.system_id, Handler.vesion, Handler.registered_time ),fields=['a', 'b', 'c', 'd', 'e'])
 query.execute()
 query1 = Handler.select(
-           Handler.handler_uuid, Handler.agent_id, Handler.system_id, Handler.vesion, Handler.registered_time )
-           )
+           Handler.handler_uuid, Handler.agent_id, Handler.system_id, Handler.vesion, Handler.registered_time ))
 query1.execute()
