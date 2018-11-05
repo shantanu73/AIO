@@ -15,7 +15,8 @@ class Tweet(BaseModel):
     message = TextField()
     created_date = DateTimeField(default=datetime.datetime.now)
     is_published = BooleanField(default=True)\
-    
+
+print('\n\nHI\n\n')
 User.create_table(True)
 Tweet.create_table(True)
     
