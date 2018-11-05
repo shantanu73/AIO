@@ -17,6 +17,6 @@ User.create_table(True)
 u_obj = User()
 u_in = (u_obj.insert(username='a2'))
 u_in.execute()
-user_list = (u_obj.select(u_obj))
+user_list = (u_obj.select(User))
 for u in user_list:
     print(u.username)
