@@ -1,12 +1,11 @@
 from aiohttp import web
 import json
-from datetime import datetime
 import random, string
 import time
 import datetime
 from peewee import *
 
-db = SqliteDatabase('my_app.db')
+db = SqliteDatabase('Handler_db.db')
 
 class BaseModel(Model):
     class Meta:
@@ -27,7 +26,7 @@ async def new_register(request):
         system_id = request.query['system_id']
         vesion = request.query['vesion']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
-        registered_time = 'current date'#datetime.now().strftime('%H:%M:%S')
+        registered_time = datetime.datetime.now().strftime('%H:%M:%S')
         
         handler_data = (Handler.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
         handler_data.execute()
@@ -40,10 +39,10 @@ async def new_register(request):
             print(row.registered_time)
             
         response_obj = { 'handler_uuid' : handler_uuid , 'registered_time' : registered_time }
-        return web.Response(text=json.dumps(response_obj), status=200)
+        return web.Response(text=json.dumps(response_obj))
     except Exception as e:
         response_obj = { 'status' : 'failed', 'reason': str(e) }        
-        return web.Response(text=json.dumps(response_obj), status=500)
+        return web.Response(text=json.dumps(response_obj))
 
 app = web.Application()
 app.router.add_get('/register', new_register)
