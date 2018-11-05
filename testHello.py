@@ -16,7 +16,7 @@ class Handler(BaseModel):
     handler_uuid = CharField(primary_key=True)
     agent_id = CharField(max_length=40)
     system_id = CharField(max_length=40)
-    version = CharField(max_length=40)
+    vesion = CharField(max_length=40)
     registered_time = CharField(max_length=40)
 
 Handler.create_table(True)
@@ -25,18 +25,18 @@ async def new_register(request):
     try:
         agent_id = request.query['agent_id']
         system_id = request.query['system_id']
-        version = request.query['version']
+        vesion = request.query['vesion']
         handler_uuid = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(16))
         registered_time = 'current date'#datetime.now().strftime('%H:%M:%S')
         
-        handler_data = (Handler.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,version=version,registered_time=registered_time))
+        handler_data = (Handler.insert(handler_uuid=handler_uuid,agent_id=agent_id,system_id=system_id,vesion=vesion,registered_time=registered_time))
         handler_data.execute()
         handler_list = (Handler.select(Handler))
         for row in handler_list:
             print(row.handler_uuid)
             print(row.agent_id)
             print(row.system_id)
-            print(row.version)
+            print(row.vesion)
             print(row.registered_time)
             
         response_obj = { 'handler_uuid' : handler_uuid , 'registered_time' : registered_time }
