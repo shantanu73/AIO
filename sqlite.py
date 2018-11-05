@@ -15,6 +15,6 @@ print('\n\nHI\n\n')
 User.create_table(True)
     
 u_in = (User.insert(username='a1'))
-user_list = (User.select(User.username))
+user_list = (User.select(User))
 for u in user_list:
     print(u.username)
