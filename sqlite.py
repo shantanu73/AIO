@@ -10,20 +10,12 @@ class BaseModel(Model):
 class User(BaseModel):
     username = CharField(unique=True)
 
-class Tweet(BaseModel):
-    user = ForeignKeyField(User)
-    message = TextField()
-    created_date = DateTimeField(default=datetime.datetime.now)
-    is_published = BooleanField(default=True)\
 
 print('\n\nHI\n\n')
 User.create_table(True)
-Tweet.create_table(True)
     
-    
-tweets = (Tweet
-          .select(Tweet, User)
-          .join(User)
-          .order_by(Tweet.created_date.desc()))
-for tweet in tweets:
-    print(tweet.user.username, tweet.message)
+u_in = (User.insert(username='a1'))
+user_list = (User
+          .select(Tweet, User))
+for u in user_list:
+    print(u.username)
