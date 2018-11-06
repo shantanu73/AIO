@@ -71,13 +71,14 @@ async def new_register(request):
         
         # query to fetch all rows from database  
         handler_list = (Handler.select(Handler))
+        '''
         for row in handler_list:
             print(row.handler_uuid)
             print(row.agent_id)
             print(row.system_id)
             print(row.version)
             print(row.registered_time)
-            
+        '''    
         response_obj = { 'handler_uuid' : handler_uuid }
         return web.Response(text=json.dumps(response_obj))
     except Exception as e:
