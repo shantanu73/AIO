@@ -78,7 +78,7 @@ async def new_register(request):
             print(row.system_id)
             print(row.version)
             print(row.registered_time)
-        '''    
+        '''
         response_obj = { 'handler_uuid' : handler_uuid }
         return web.Response(text=json.dumps(response_obj))
     except Exception as e:
