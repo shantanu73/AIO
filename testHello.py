@@ -58,6 +58,7 @@ async def new_register(request):
     '''
     try:
         # set values for agent_id, system_id, vesion, handler_uuid and registered_time
+        print(type(request))
         agent_id = request.query['agent_id']
         system_id = request.query['system_id']
         version = request.query['vesion']
