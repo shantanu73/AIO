@@ -7,6 +7,7 @@ import datetime
     
 def new_register(request):
     try:
+        print("hi")
         agent_id = request.query['agent_id']
         print(agent_id)
         response_obj = { 'agent_id' : agent_id }
