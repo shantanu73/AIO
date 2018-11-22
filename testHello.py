@@ -42,6 +42,7 @@ class Handler(BaseModel):
 
 Handler.create_table(True)
 
+
 async def number(request):
     try:
         num = request.query['']
