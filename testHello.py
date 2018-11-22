@@ -41,6 +41,16 @@ class Handler(BaseModel):
     registered_time = CharField(max_length=40)
 
 Handler.create_table(True)
+
+async def number(request):
+    try:
+        num = request.query['']
+        print(num)
+        response_obj = { 'number' : num }
+        return web.Response(text=json.dumps(response_obj))
+    except Exception as e:
+        response_obj = { 'status' : 'failed', 'reason': str(e) }        
+        return web.Response(text=json.dumps(response_obj))
     
 async def new_register(request):
     '''
@@ -87,5 +97,6 @@ async def new_register(request):
 
 app = web.Application()
 app.router.add_get('/register', new_register)
+app.router.add_get('/number', number)
 
 web.run_app(app)
