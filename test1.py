@@ -5,7 +5,7 @@ import random, string
 import time
 import datetime
     
-async def new_register(request):
+def new_register(request):
     try:
         agent_id = request.query['agent_id']
         print(agent_id)
