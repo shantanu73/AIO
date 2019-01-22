@@ -7,11 +7,12 @@ import datetime
     
 def new_register(request):
     try:
-        print("hi")
-        agent_id = request.query['agent_id']
-        print(agent_id)
-        response_obj = { 'agent_id' : agent_id }
-        return web.Response(text=json.dumps(response_obj), status=200)
+        index_path = "/root/AIO/ui-1.html"
+        index_file = open(index_path)
+        log.info("Serving %s", index_path)
+        resp = web.Response(body=index_file.read().encode('utf-8'))
+        resp.headers['content-type'] = 'text/html'
+        return resp
     except Exception as e:
         response_obj = { 'status' : 'failed', 'reason': str(e) }        
         return web.Response(text=json.dumps(response_obj), status=500)
