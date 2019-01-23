@@ -7,7 +7,7 @@ import datetime
     
 def new_register(request):
     try:
-        index_path = "/root/AIO/index.html"
+        index_path = "/root/AIO/ui-1.html"
         index_file = open(index_path)
         resp = web.Response(body=index_file.read().encode('utf-8'))
         resp.headers['content-type'] = 'text/html'
